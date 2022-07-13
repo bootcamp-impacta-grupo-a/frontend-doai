@@ -8,20 +8,20 @@ export const courses = [
     title: 'Curso de Java Script',
     description: 'Aprenda a fazer sites e sistemas web Java Script',
     progress: 'Progresso 78%',
-    img: 'course01',
+    img: 'course01'
   },
   {
     id: 2,
     title: 'Curso de NodeJS',
     description: 'Aprenda a fazer sites e sistemas web Java Script',
     progress: 'Progresso 35%',
-    img: 'course02',
+    img: 'course02'
   },
   {
     id: 3,
     title: 'Curso de ReactJS',
     description: 'Aprenda a fazer sites e sistemas web Java Script',
     progress: 'Progresso 5%',
-    img: 'course03',
-  },
+    img: 'course03'
+  }
 ];

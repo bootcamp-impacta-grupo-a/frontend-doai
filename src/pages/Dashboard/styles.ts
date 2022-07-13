@@ -21,13 +21,11 @@ export const Main = styled.main`
   grid-template-areas:
     'sidenav nav'
     'sidenav content';
-  @media (max-width: 500px){
+  @media (max-width: 500px) {
     grid-template-columns: 1fr;
     grid-template-areas:
-    'sidenav'
-    'nav'
-    'content';
+      'sidenav'
+      'nav'
+      'content';
   }
-`
-;
-
+`;

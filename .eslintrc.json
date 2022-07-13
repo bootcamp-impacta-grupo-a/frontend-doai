@@ -1,0 +1,93 @@
+{
+  // Especifica o Ambiente que o projeto roda
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+
+  // Define o parser default do projeto
+  // By default, ESLint uses Espree as its parser.
+  "parser": "@typescript-eslint/parser", // @typescript-eslint/parser
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+
+  // Plugins de ESLint instalados
+  "plugins": [
+    "react", // eslint-plugin-react@latest
+    "prettier", // eslint-config-prettier eslint-plugin-prettier
+    "import", // eslint-plugin-import@latest eslint-import-resolver-typescript@latest
+    "@typescript-eslint" // @typescript-eslint/eslint-plugin@latest @typescript-eslint/parser@latest
+  ],
+
+  // Habilita as regras dos plugins instalados (recommended ou strict)
+  "extends": [
+    // Eslint (default)
+    "eslint:recommended",
+
+    // Plugin React
+    "plugin:react/recommended",
+
+    // Plugin import
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+
+    // plugin typescript
+    "plugin:@typescript-eslint/recommended",
+
+    // Plugins Prettier
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+
+  // Configurações dos plugins
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": { "alwaysTryTypes": true },
+      "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] },
+      "react": { "extensions": [".ts", ".tsx", ".js", ".jsx"] }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+
+  // Configurações de Regras Específicas dos plugins
+  "rules": {
+    // lida com as regras do prettier
+    "prettier/prettier": "warn",
+
+    // lida com vars não utilizadas
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["off"],
+
+    // lida com funções sem conteúdo
+    "no-empty-function": "warn",
+    "@typescript-eslint/no-empty-function": ["warn"],
+
+    // lida com a tipagem "any"
+    "@typescript-eslint/no-explicit-any": ["off"],
+
+    // lida com a tipagem de argumentos e verifica funções sem retorno
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+
+    // permite variáveis e strings JSX na mesma linha, mas não elementos
+    "react/jsx-one-expression-per-line": "off",
+
+    // lida com erros de falta de importações
+    "import/no-unresolved": "error",
+
+    "import/namespace": "off",
+
+    "no-case-declarations": "off",
+
+    "react/prop-types": "off",
+
+    "react/react-in-jsx-scope": "off"
+  }
+}

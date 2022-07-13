@@ -13,8 +13,8 @@
 <h5 align=center>
 <img src="readme/Home.png" width=600><br>
 
-🎨 Layout por Adriana Ferreira Lima | 
- [Ver desenho no Figma](https://www.figma.com/file/y1dFBhZTgySq77QlAhJpWg/Github-Find-User?node-id=160%3A2761)
+🎨 Layout por Adriana Ferreira Lima |
+[Ver desenho no Figma](https://www.figma.com/file/y1dFBhZTgySq77QlAhJpWg/Github-Find-User?node-id=160%3A2761)
 
 </h5>
 
@@ -76,14 +76,13 @@
 - Clonar Repositório: `git clone https://github.com/dxwebster/github-user-finder.git`
 - Instalar dependências: `yarn`
 - Criar aquivo .env com as seguintes variáveis:
+
 ```
 REACT_APP_ENVIRONMENT = "development"
 NODE_ENV = "development"
 ```
+
 - Rodar Aplicação: `yarn start`
-
-
-
 
 ## 📕 Licença
 

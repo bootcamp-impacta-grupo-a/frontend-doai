@@ -1,7 +1,7 @@
 export const getConfigs = () => {
   const configs = {
     ENVIRONMENT: process.env.ENVIRONMENT,
-    ENDPOINT: process.env.ENDPOINT,
+    ENDPOINT: process.env.ENDPOINT
   };
 
   return configs;

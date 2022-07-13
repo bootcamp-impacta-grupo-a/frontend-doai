@@ -15,7 +15,7 @@ function ToastProvider({ children }: any) {
       id: v4(),
       type,
       title,
-      description,
+      description
     };
 
     setMessages((state) => [...state, toast]);

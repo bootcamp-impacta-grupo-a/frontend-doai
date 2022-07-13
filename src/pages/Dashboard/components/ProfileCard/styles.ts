@@ -11,7 +11,6 @@ export const ProfileContainer = styled.div`
   align-items: center;
 
   padding: 4rem 2rem;
-
 `;
 
 export const ImageContainer = styled.div`
