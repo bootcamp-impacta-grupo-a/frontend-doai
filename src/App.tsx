@@ -1,29 +1,33 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import './App.css'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import Cadastro from './pages/Cadastro'
 
-import './config/ReactotronConfig';
-import AppProvider from './providers/AppProvider';
-
-import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-
-import GlobalStyle from './styles/global';
+const PrivateRoute = ({ children, redirectTo }: any) => {
+  const isAuthenticated = localStorage.getItem("token") !== null;
+  console.log("isAuth: ", isAuthenticated);
+  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+};
 
 function App() {
-  console.info(`==> 🌎  Você está no modo ${process.env.NODE_ENV}`);
-  console.info(`==> 🌎  Você está no ambiente ${process.env.REACT_APP_ENVIRONMENT}`);
 
   return (
-    <AppProvider>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route path="/dashboard/*" element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
-      <GlobalStyle />
-    </AppProvider>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute redirectTo="/">
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Cadastro />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

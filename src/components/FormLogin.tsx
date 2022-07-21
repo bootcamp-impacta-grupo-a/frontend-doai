@@ -1,0 +1,137 @@
+import {
+  Input,
+  Button,
+  InputGroup,
+  InputRightElement,
+  useToast,
+} from "@chakra-ui/react";
+import icon from "../assets/icon_receipt.svg";
+import { Link } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+interface IProps {
+  onPressLogin: (token: string) => void;
+}
+
+const baseURL = `https://localhost:44353/Doai/Usuario/Autenticacao`;
+
+const FormLogin = ({ onPressLogin }: IProps) => {
+  const [show, setShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
+  const toast = useToast();
+
+  const toastLoginInválido = () => {
+    toast({
+      position: "top",
+      title: "Erro: ",
+      description: "email ou senha inválidos.",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  };
+
+  
+
+  //Chamada de Login
+  async function fazerLogin() {
+    //valida se os campos login e senha foram preenchidos
+    if (email == "" || senha == "") {
+      toastLoginInválido()
+      return
+    }
+
+    await axios
+      .post(`${baseURL}?Login=${email}&Senha=${senha}`)
+      .then((response) => {
+        setTimeout(() => {
+          onPressLogin(response.data.token);
+          toast({
+            position: "top",
+            title: "Bem Vindo! ",
+            description: "login realizado com sucesso.",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+          });
+        }, 1000);
+      })
+      .catch((e) => {
+        toastLoginInválido()
+      })
+  }
+
+  //redireciona para home sem login
+  const toHome = () => {
+    localStorage.setItem("token", "token");
+  };
+
+  //redireciona para tela de cadastro
+  const toRegister = () => {
+    navigate("/register");
+  };
+
+
+  return (
+    <div className="w-10/12  md:w-1/3 lg:w-1/4 h-3/5 p-4 flex flex-col bg-white rounded-md justify-around items-center">
+      <p className="flex  text-5xl text-corfonte font-texto font-bold">
+        <img src={icon} alt="Icone de recebimento " className="mr-1" /> doaí
+      </p>
+      <p className="text-center  font-semibold text-lg ">Doe suas notas fiscais e ajude pessoas!</p>
+      <div className="w-10/12 h-auto grid gap-4">
+        <Input
+          placeholder="Email"
+          size="md"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <InputGroup size="md">
+          <Input
+            pr="4.5rem"
+            type={show ? "text" : "password"}
+            placeholder="Senha"
+            onChange={(e) => setSenha(e.target.value)}
+            value={senha}
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={() => setShow(!show)}>
+              {show ? <FaEyeSlash /> : <FaEye />}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </div>
+      <div className="w-10/12 flex justify-around">
+        <Button
+          bgColor={"#FFC011"}
+          _hover={{ backgroundColor: "#ffd311" }}
+          color="white"
+          variant="solid"
+          width={150}
+          onClick={fazerLogin}
+        >
+          Login
+        </Button>
+        <Button
+          colorScheme="cyan"
+          variant="outline"
+          width={150}
+          marginLeft={5}
+          onClick={toRegister}
+        >
+          Cadastrar
+        </Button>
+      </div>
+      <Link onClick={toHome} href="/home">
+        <span className="underline">
+          Quero doar sem fazer login
+        </span> 
+      </Link>
+    </div>
+  );
+};
+
+export default FormLogin;
