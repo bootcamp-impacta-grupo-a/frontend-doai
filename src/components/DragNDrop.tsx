@@ -4,14 +4,25 @@ import {useDropzone} from 'react-dropzone';
 
 export function DragNDrop(props) {
   const [files, setFiles] = useState([]);
-  const {getRootProps, getInputProps} = useDropzone({
+  const [bloob, setBloob] = useState('');
+  const {getRootProps, getInputProps, inputRef } = useDropzone({
     accept: {
       'image/*': []
     },
     onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
-      })));
+      
+      setFiles(acceptedFiles.map(file => {
+        const reader = new FileReader()
+        reader.onload = () => {
+        // Do whatever you want with the file contents
+          setBloob(reader.result as string) 
+        }
+        reader.readAsBinaryString(file)
+
+        return Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        
+      })}));
     }
   });
   
@@ -33,10 +44,15 @@ export function DragNDrop(props) {
     return () => files.forEach(file => URL.revokeObjectURL(file.preview));
   }, []);
 
+  useEffect(() => {
+    if (files.length > 0 ) props.habilitarBotao(true) 
+  }, [files]);
+  
+
   return (
     <section className="bg-[#DCE2E5] border border-dashed border-black w-4/5 flex flex-col justify-center items-center rounded-md">
       <div {...getRootProps({className: 'dropzone'})} className='w-full flex flex-col h-52 cursor-pointer'>
-        <input {...getInputProps()} />
+        <input   {...getInputProps()} />
         <p className='bg-[#FFC011] px-12 py-2  mt-24  rounded-sm text-white font-texto w-3/6 mx-auto text-center '>+ Selecione ou arraste as imagens aqui</p>
       </div>
       <aside className='flex flex-row flex-wrap mt-4'>

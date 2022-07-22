@@ -13,13 +13,10 @@ import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useDispatch } from "react-redux";
 import { changeUser } from "../redux/userSlice";
-interface IProps {
-  onPressLogin: (token: string) => void;
-}
 
 const baseURL = `https://localhost:44353/Doai/Usuario/Autenticacao`;
 
-const FormLogin = ({ onPressLogin }: IProps) => {
+const FormLogin = () => {
   const [show, setShow] = useState(false);
   const [login, setlogin] = useState("");
   const [senha, setSenha] = useState("");
@@ -52,8 +49,7 @@ const FormLogin = ({ onPressLogin }: IProps) => {
       .post(`${baseURL}?Login=${login}&Senha=${senha}`)
       .then((response) => {
         setTimeout(() => {
-          dispatch(changeUser({name: login, token: response.data.token}))
-          onPressLogin(response.data.token);
+          dispatch(changeUser({name: login, token: response.data.token, logged: true}))
           toast({
             position: "top",
             title: "Bem Vindo! ",
@@ -71,7 +67,7 @@ const FormLogin = ({ onPressLogin }: IProps) => {
 
   //redireciona para home sem login
   const toHome = () => {
-    localStorage.setItem("token", "token");
+    navigate('/homepage')
   };
 
   //redireciona para tela de cadastro

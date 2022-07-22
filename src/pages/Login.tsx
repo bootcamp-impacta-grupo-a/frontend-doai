@@ -1,39 +1,26 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/userSlice";
 import FormLogin from '../components/FormLogin'
 import bro from "../assets/bro.svg";
 
 
 
 const Login = () => {
- 
-  const [loading, setLoading] = useState(false);
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && localStorage.getItem("token") !== null) {
-      navigate("/homepage");
+    if (user.isLogged) {
+      navigate('/homepage')
     }
-  }, [loading, navigate]);
-
-  const login = (token: string) => {
-    setLoading(true);
-    if (token) {
-      console.log(token)
-      setTimeout(() => {
-        localStorage.setItem("token", token);
-        setLoading(false);
-      }, 500);
-    }
-  };
-
-
-  
+  },[user.isLogged])
 
   return (
     <div className="h-screen flex bg-gradient-to-r from-cyan-500 to-blue-500 justify-around items-center ">
-      <FormLogin onPressLogin={(token) => login(token)}/>
+      <FormLogin />
       <img
         src={bro}
         alt="Grupo de amigos de mãos dadas"
