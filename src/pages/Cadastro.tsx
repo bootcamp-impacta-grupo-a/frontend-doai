@@ -35,7 +35,7 @@ function Cadastro() {
         title: "Erro! ",
         description: "Preencha todos os campos.",
         status: "error",
-        duration: 9000,
+        duration: 3000,
         isClosable: true,
       });
       return
@@ -46,7 +46,7 @@ function Cadastro() {
         title: "Erro ",
         description: "As senhas estão diferentes",
         status: "error",
-        duration: 9000,
+        duration: 3000,
         isClosable: true,
       });
       return
@@ -57,7 +57,7 @@ function Cadastro() {
         title: "Erro ",
         description: "Aceite os termos de uso.",
         status: "error",
-        duration: 9000,
+        duration: 3000,
         isClosable: true,
       });
       return
@@ -76,7 +76,7 @@ function Cadastro() {
             title: "Parabéns! ",
             description: "Cadastro realizado com sucesso.",
             status: "success",
-            duration: 9000,
+            duration: 3000,
             isClosable: true,
           });
           navigate('/')

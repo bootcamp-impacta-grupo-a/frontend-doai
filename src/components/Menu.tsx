@@ -1,12 +1,11 @@
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar, Button } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
-import icon from "../assets/icon_receipt.svg";
+import { Avatar } from "@chakra-ui/react";
 
-export function Menu() {
+export function Menu(props) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ export function Menu() {
       <div className="w-4/5 h-full flex items-center">
         <ul className="flex justify-around items-center w-full h-full text-lg font-medium text-white mt-2">
           <li>
-            <Link to={"/homepage"}>
+            <Link to={"/home"}>
               <p className="flex flex-row text-4xl   font-texto font-bold">
                 <svg
                   width="35"
@@ -40,7 +39,7 @@ export function Menu() {
             </Link>
           </li>
           <li>
-            <Link to={"/homepage"}>Carregar Notas Fiscais</Link>
+            <Link to={"/home/upload"}><span className={`font-extrabold text-xl mr-2 ${props.menuAtual == 1 ? 'underline': ''}`}> Carregar Notas Fiscais</span></Link>
           </li>
           <li>
             <Link to={"/"}>Instituições</Link>
@@ -54,8 +53,9 @@ export function Menu() {
                 <Link to={"/"}>Ajuda</Link>
               </li>
               <li>
-                <Link to={"/"}>
-                  olá, {user.name}
+                <Link to={"/home/perfil"}>
+                  olá, <span className={`font-extrabold text-xl mr-2 ${props.menuAtual == 5 ? 'underline': ''}`}>{user.name}</span>
+                  <Avatar  size={"sm"} src='https://bit.ly/broken-link' />
                 </Link>
               </li>
             </>

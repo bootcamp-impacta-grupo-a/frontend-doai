@@ -30,7 +30,7 @@ const FormLogin = () => {
       title: "Erro: ",
       description: "login ou senha inválidos.",
       status: "error",
-      duration: 9000,
+      duration: 3000,
       isClosable: true,
     });
   };
@@ -55,7 +55,7 @@ const FormLogin = () => {
             title: "Bem Vindo! ",
             description: "login realizado com sucesso.",
             status: "success",
-            duration: 9000,
+            duration: 3000,
             isClosable: true,
           });
         }, 1000);
@@ -67,7 +67,7 @@ const FormLogin = () => {
 
   //redireciona para home sem login
   const toHome = () => {
-    navigate('/homepage')
+    navigate('/home/upload')
   };
 
   //redireciona para tela de cadastro
@@ -125,7 +125,7 @@ const FormLogin = () => {
           Cadastrar
         </Button>
       </div>
-      <Link onClick={toHome} href="/homepage">
+      <Link onClick={toHome} href="/home/upload">
         <span className="underline">
           Quero doar sem fazer login
         </span> 
