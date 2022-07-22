@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!loading && localStorage.getItem("token") !== null) {
-      navigate("/home");
+      navigate("/homepage");
     }
   }, [loading, navigate]);
 

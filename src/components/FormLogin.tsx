@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { useDispatch } from "react-redux";
+import { changeUser } from "../redux/userSlice";
 interface IProps {
   onPressLogin: (token: string) => void;
 }
@@ -19,16 +21,17 @@ const baseURL = `https://localhost:44353/Doai/Usuario/Autenticacao`;
 
 const FormLogin = ({ onPressLogin }: IProps) => {
   const [show, setShow] = useState(false);
-  const [email, setEmail] = useState("");
+  const [login, setlogin] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
   const toast = useToast();
+  const dispatch = useDispatch();
 
   const toastLoginInválido = () => {
     toast({
       position: "top",
       title: "Erro: ",
-      description: "email ou senha inválidos.",
+      description: "login ou senha inválidos.",
       status: "error",
       duration: 9000,
       isClosable: true,
@@ -40,15 +43,16 @@ const FormLogin = ({ onPressLogin }: IProps) => {
   //Chamada de Login
   async function fazerLogin() {
     //valida se os campos login e senha foram preenchidos
-    if (email == "" || senha == "") {
+    if (login == "" || senha == "") {
       toastLoginInválido()
       return
     }
 
     await axios
-      .post(`${baseURL}?Login=${email}&Senha=${senha}`)
+      .post(`${baseURL}?Login=${login}&Senha=${senha}`)
       .then((response) => {
         setTimeout(() => {
+          dispatch(changeUser({name: login, token: response.data.token}))
           onPressLogin(response.data.token);
           toast({
             position: "top",
@@ -84,10 +88,10 @@ const FormLogin = ({ onPressLogin }: IProps) => {
       <p className="text-center  font-semibold text-lg ">Doe suas notas fiscais e ajude pessoas!</p>
       <div className="w-10/12 h-auto grid gap-4">
         <Input
-          placeholder="Email"
+          placeholder="Login"
           size="md"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          onChange={(e) => setlogin(e.target.value)}
+          value={login}
         />
         <InputGroup size="md">
           <Input
@@ -125,7 +129,7 @@ const FormLogin = ({ onPressLogin }: IProps) => {
           Cadastrar
         </Button>
       </div>
-      <Link onClick={toHome} href="/home">
+      <Link onClick={toHome} href="/homepage">
         <span className="underline">
           Quero doar sem fazer login
         </span> 

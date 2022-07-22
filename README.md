@@ -36,7 +36,7 @@
 - Clonar Repositório: `git clone`
 - Instalar dependências: `yarn`
 
-- Rodar Aplicação: `yarn start`
+- Rodar Aplicação: `yarn run dev`
 
 ## 📕 Licença
 

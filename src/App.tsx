@@ -1,13 +1,17 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import './App.css'
 import Login from './pages/Login'
-import Home from './pages/Home'
+import Homepage from './pages/Homepage'
 import Cadastro from './pages/Cadastro'
+import { useSelector } from 'react-redux'
+import { selectUser } from "./redux/userSlice";
+
 
 const PrivateRoute = ({ children, redirectTo }: any) => {
-  const isAuthenticated = localStorage.getItem("token") !== null;
-  console.log("isAuth: ", isAuthenticated);
-  return isAuthenticated ? children : <Navigate to={redirectTo} />;
+  const user = useSelector(selectUser)
+  //const isAuthenticated = localStorage.getItem("token") !== null;
+  //console.log("isAuth: ", isAuthenticated);
+  return user.token != '' ? children : <Navigate to={redirectTo} />;
 };
 
 function App() {
@@ -15,16 +19,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Cadastro />} />
         <Route
-          path="/home"
+          path="/homepage"
           element={
             <PrivateRoute redirectTo="/">
-              <Home />
+              <Homepage />
             </PrivateRoute>
           }
         />
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Cadastro />} />
       </Routes>
     </BrowserRouter>
   )

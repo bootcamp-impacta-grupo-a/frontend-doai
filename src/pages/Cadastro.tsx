@@ -18,7 +18,7 @@ const baseURL = `https://localhost:44353/Doai/Usuario/NovoUsuario`;
 function Cadastro() {
   const [show, setShow] = useState(false);
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
+  const [login, setlogin] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
   const [termos, setTermos] = useState(false);
@@ -29,7 +29,7 @@ function Cadastro() {
   //Chamada de Cadastro
   async function Cadastrar() {
     //valida se os campos foram preenchidos
-    if (nome == "" || email == "" || senha == "" || confirmaSenha == "" ) {
+    if (nome == "" || login == "" || senha == "" || confirmaSenha == "" ) {
       toast({
         position: "top",
         title: "Erro! ",
@@ -67,7 +67,7 @@ function Cadastro() {
       .post(`${baseURL}`,{
         nome:  nome,
         senha: senha,
-        login: email
+        login: login
       })
       .then((response) => {
         setTimeout(() => {
@@ -104,10 +104,10 @@ function Cadastro() {
             value={nome}
           />
           <Input
-            placeholder="Email"
+            placeholder="login"
             size="md"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            onChange={(e) => setlogin(e.target.value)}
+            value={login}
           />
           <InputGroup size="md">
             <Input
