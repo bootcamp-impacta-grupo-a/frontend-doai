@@ -1,16 +1,61 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Spinner, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { DragNDrop } from "../components/DragNDrop";
 import { FiAlertTriangle } from "react-icons/fi";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import InputFile from "../components/InputFile";
+import axios from 'axios';
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/userSlice";
+
 
 export default function Upload() {
-  const [fotosCarregadas, setFotosCarregadas] = useState(false)
+  const [isfotosCarregadas, setIsFotosCarregadas] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [file, setFile] = useState(null)
   const [paginaSelecionada, setPaginaSelecionada] = useOutletContext();
+  const user = useSelector(selectUser);
+  const toast = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPaginaSelecionada(1)
   }, [])
+
+  const enviarFoto = () => {
+    setLoading(true)
+    var formData = new FormData();
+    formData.append("formData", file);
+    axios.post('https://localhost:44353/Doai/NotaFiscal/UploadNota', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${user.token}` 
+    }
+    }).then((response) => {
+      toast({
+        position: "top",
+        title: "Obrigado! ",
+        description: "Foto carregada com sucesso.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      setLoading(false)
+      navigate('/home/instituicoes')
+      
+    })
+    .catch((e) => {
+      toast({
+        position: "top",
+        title: "Erro ao enviar a foto ",
+        description: "selecione outra imagem",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      setLoading(false)
+    })
+  }
 
   return (
     <>
@@ -18,7 +63,8 @@ export default function Upload() {
         Carregue suas notas fiscais
       </p>
       <div className="h-3/5 w-11/12 mt-4 rounded-xl flex flex-col justify-around items-center bg-white">
-        <DragNDrop habilitarBotao={setFotosCarregadas} />
+        {/* <DragNDrop habilitarBotao={setFotosCarregadas} /> */}
+        <InputFile habilitarBotao={setIsFotosCarregadas} carregarFotos={setFile}/>
         <div className="flex justify-around w-full">
           <span className="flex">
             <FiAlertTriangle className="text-[#FFC011] mt-2 mr-2" />
@@ -27,15 +73,16 @@ export default function Upload() {
             </p>
           </span>
           <Button
-            backgroundColor={fotosCarregadas ? "#FFC011" : "gray"}
+            backgroundColor={isfotosCarregadas ? "#FFC011" : "gray"}
             _hover={{ backgroundColor: "#ffd311" }}
             color="white"
             variant="outline"
             width={300}
             marginLeft={5}
-            disabled={!fotosCarregadas}
+            disabled={!isfotosCarregadas}
+            onClick={enviarFoto}
           >
-            Selecionar Instituição
+            {!loading ? 'Selecionar Instituição' : <Spinner color='blue.500' />}
           </Button>
         </div>
       </div>

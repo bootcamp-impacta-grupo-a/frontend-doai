@@ -4,6 +4,7 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
+  Spinner,
 } from "@chakra-ui/react";
 import icon from "../assets/icon_receipt.svg";
 import { Link } from "@chakra-ui/react";
@@ -18,6 +19,7 @@ const baseURL = `https://localhost:44353/Doai/Usuario/Autenticacao`;
 
 const FormLogin = () => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [login, setlogin] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
@@ -44,6 +46,7 @@ const FormLogin = () => {
       toastLoginInválido()
       return
     }
+    setLoading(true)
 
     await axios
       .post(`${baseURL}?Login=${login}&Senha=${senha}`)
@@ -58,10 +61,12 @@ const FormLogin = () => {
             duration: 3000,
             isClosable: true,
           });
+          setLoading(false)
         }, 1000);
       })
       .catch((e) => {
         toastLoginInválido()
+        setLoading(false)
       })
   }
 
@@ -113,7 +118,7 @@ const FormLogin = () => {
           width={150}
           onClick={fazerLogin}
         >
-          Login
+          {!loading ? 'Login' : <Spinner color='blue.500' />}
         </Button>
         <Button
           colorScheme="cyan"

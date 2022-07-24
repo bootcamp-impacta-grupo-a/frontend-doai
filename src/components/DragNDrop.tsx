@@ -1,31 +1,32 @@
-import {useEffect, useState} from 'react';
+import axios from 'axios';
+import {useEffect, useRef, useState} from 'react';
 import {useDropzone} from 'react-dropzone';
-
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/userSlice";
 
 export function DragNDrop(props) {
   const [files, setFiles] = useState([]);
-  const [bloob, setBloob] = useState('');
-  const {getRootProps, getInputProps, inputRef } = useDropzone({
+  const inputEl = useRef(null);
+  const user = useSelector(selectUser);
+  const {getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': []
     },
+    maxFiles:1,
+    // onDropRejected(fileRejections, event) {
+    //     alert('ERRO ')
+    // },
     onDrop: acceptedFiles => {
-      
       setFiles(acceptedFiles.map(file => {
-        const reader = new FileReader()
-        reader.onload = () => {
-        // Do whatever you want with the file contents
-          setBloob(reader.result as string) 
-        }
-        reader.readAsBinaryString(file)
-
         return Object.assign(file, {
         preview: URL.createObjectURL(file),
         
       })}));
-    }
+    },  
   });
   
+
+
   const thumbs = files.map(file => (
     <div className='inline-flex rounded-md border border-stone-400 border-solid mb-2 mr-2 w-24 h-24 p-1 box-border' key={file.name}>
       <div className='flex min-w-0 overflow-hidden'>
@@ -45,9 +46,33 @@ export function DragNDrop(props) {
   }, []);
 
   useEffect(() => {
-    if (files.length > 0 ) props.habilitarBotao(true) 
+    if (files.length > 1) setFiles([])
+    if (files.length == 1) {
+      props.habilitarBotao(true) 
+      //onButtonClick()
+    }
+
   }, [files]);
   
+  const onButtonClick = () => {
+    // `current` aponta para o evento de `focus` gerado pelo campo de texto
+    // inputEl.current.focus();
+    // console.log(inputEl.current.files[0])
+
+    var formData = new FormData();
+    formData.append("formData", files[0]);
+    axios.post('https://localhost:44353/Doai/NotaFiscal/UploadNota', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${user.token}` 
+    }
+    }).then((response) => {
+     console.log(response)
+    })
+    .catch((e) => {
+      console.log(e)
+    })
+  };
 
   return (
     <section className="bg-[#DCE2E5] border border-dashed border-black w-4/5 flex flex-col justify-center items-center rounded-md">

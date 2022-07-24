@@ -17,10 +17,10 @@ export function Menu(props) {
 
   return (
     <div className="bg-[#07B7DE] h-16 w-screen fixed top-0 flex justify-center">
-      <div className="w-4/5 h-full flex items-center">
+      <div className="lg:w-4/5 w-full h-full flex items-center">
         <ul className="flex justify-around items-center w-full h-full text-lg font-medium text-white mt-2">
           <li>
-            <Link to={"/home"}>
+            <Link to={"/home/upload"}>
               <p className="flex flex-row text-4xl   font-texto font-bold">
                 <svg
                   width="35"
@@ -39,22 +39,22 @@ export function Menu(props) {
             </Link>
           </li>
           <li>
-            <Link to={"/home/upload"}><span className={`font-extrabold text-xl mr-2 ${props.menuAtual == 1 ? 'underline': ''}`}> Carregar Notas Fiscais</span></Link>
+            <Link to={"/home/upload"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-xl': ''}`}> Carregar Notas Fiscais</span></Link>
           </li>
           <li>
-            <Link to={"/"}>Instituições</Link>
+            <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-xl': ''}`}> Instituições</span></Link>
           </li>
           {user.isLogged && (
             <>
               <li>
-                <Link to={"/"}>Minhas Doações</Link>
+                <Link to={"/"}><span className={` ${props.menuAtual == 3 ? 'underline font-extrabold text-xl': ''}`}>Minhas Doações</span> </Link>
               </li>
               <li>
-                <Link to={"/"}>Ajuda</Link>
+                <Link to={"/"}><span className={` ${props.menuAtual == 4 ? 'underline font-extrabold text-xl': ''}`}>Ajuda</span></Link>
               </li>
               <li>
                 <Link to={"/home/perfil"}>
-                  olá, <span className={`font-extrabold text-xl mr-2 ${props.menuAtual == 5 ? 'underline': ''}`}>{user.name}</span>
+                  olá, <span className={` ${props.menuAtual == 5 ? 'underline font-extrabold text-xl': ''}`}>{user.name}</span>
                   <Avatar  size={"sm"} src='https://bit.ly/broken-link' />
                 </Link>
               </li>
