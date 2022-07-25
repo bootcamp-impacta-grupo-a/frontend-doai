@@ -7,6 +7,7 @@ import Perfil  from "./pages/Perfil";
 import Upload from "./pages/Upload";
 import { Instituicoes } from "./pages/Instituicoes";
 import { Confirmacao } from "./pages/Confirmacao";
+import Historico from "./pages/Historico";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="perfil"  element={<Perfil/>}/>
           <Route path="upload"  element={<Upload/>}/>
           <Route path="instituicoes"  element={<Instituicoes/>}/>
+          <Route path="historico"  element={<Historico/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
