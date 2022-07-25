@@ -47,10 +47,10 @@ export function Menu(props) {
           {user.isLogged && (
             <>
               <li>
-                <Link to={"/"}><span className={` ${props.menuAtual == 3 ? 'underline font-extrabold text-xl': ''}`}>Minhas Doações</span> </Link>
+                <Link to={"/home/upload"}><span className={` ${props.menuAtual == 3 ? 'underline font-extrabold text-xl': ''}`}>Minhas Doações</span> </Link>
               </li>
               <li>
-                <Link to={"/"}><span className={` ${props.menuAtual == 4 ? 'underline font-extrabold text-xl': ''}`}>Ajuda</span></Link>
+                <Link to={"/home/upload"}><span className={` ${props.menuAtual == 4 ? 'underline font-extrabold text-xl': ''}`}>Ajuda</span></Link>
               </li>
               <li>
                 <Link to={"/home/perfil"}>

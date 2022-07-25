@@ -6,6 +6,7 @@ import Cadastro from './pages/Cadastro'
 import Perfil  from "./pages/Perfil";
 import Upload from "./pages/Upload";
 import { Instituicoes } from "./pages/Instituicoes";
+import { Confirmacao } from "./pages/Confirmacao";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Cadastro />} />
+        <Route path="/confirmacao" element={<Confirmacao />} />
         <Route path="/home"  element={<Home/>}>
           <Route path="perfil"  element={<Perfil/>}/>
           <Route path="upload"  element={<Upload/>}/>

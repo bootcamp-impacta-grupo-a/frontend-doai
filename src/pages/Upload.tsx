@@ -59,9 +59,9 @@ export default function Upload() {
 
   return (
     <>
-      <p className="text-4xl font-bold font-texto">
+      <h3 className="text-4xl font-bold font-texto">
         Carregue suas notas fiscais
-      </p>
+      </h3>
       <div className="h-3/5 w-11/12 mt-4 rounded-xl flex flex-col justify-around items-center bg-white">
         {/* <DragNDrop habilitarBotao={setFotosCarregadas} /> */}
         <InputFile habilitarBotao={setIsFotosCarregadas} carregarFotos={setFile}/>
