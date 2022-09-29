@@ -7,7 +7,7 @@ export default function Perfil() {
   const [novaSenha, setNovaSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const toast = useToast();
-  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext();
+  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext<any>();
 
 
 

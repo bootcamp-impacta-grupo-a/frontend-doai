@@ -39,10 +39,10 @@ export function Menu(props) {
             </Link>
           </li>
           <li>
-            <Link to={"/home/upload"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-xl': ''}`}> Carregar Notas Fiscais</span></Link>
+            <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-xl': ''}`}> Instituições</span></Link>
           </li>
           <li>
-            <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-xl': ''}`}> Instituições</span></Link>
+            <Link to={"/home/instituicoes"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-xl': ''}`}> Carregar Notas Fiscais</span></Link>
           </li>
           {user.isLogged && (
             <>
@@ -55,7 +55,7 @@ export function Menu(props) {
               <li>
                 <Link to={"/home/perfil"}>
                   olá, <span className={` ${props.menuAtual == 5 ? 'underline font-extrabold text-xl ': ''}mr-2`}>{user.name}</span>
-                  <Avatar  size={"sm"} src='https://bit.ly/broken-link' />
+                  <Avatar name={user.name} size={"sm"} bg='yellow.400' src='https://bit.ly/broken-link' />
                 </Link>
               </li>
             </>

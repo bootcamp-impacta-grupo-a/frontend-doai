@@ -6,6 +6,7 @@ import {
   useToast,
   Checkbox,
   Link,
+  Spinner,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -13,7 +14,7 @@ import icon from "../assets/icon_receipt.svg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const baseURL = `https://localhost:44353/Doai/Usuario/NovoUsuario`;
+const baseURL = `${process.env.BASE_URL}/Doai/Usuario/NovoUsuario`;
 
 function Cadastro() {
   const [show, setShow] = useState(false);
@@ -22,6 +23,7 @@ function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
   const [termos, setTermos] = useState(false);
+  const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -63,11 +65,13 @@ function Cadastro() {
       return
     }
 
+    setLoading(true)
+
     await axios
       .post(`${baseURL}`,{
-        nome:  nome,
-        senha: senha,
-        login: login
+        nome:  nome.trim(),
+        senha: senha.trim(),
+        login: login.trim()
       })
       .then((response) => {
         setTimeout(() => {
@@ -79,11 +83,20 @@ function Cadastro() {
             duration: 3000,
             isClosable: true,
           });
+          setLoading(false)
           navigate('/')
         }, 1000);
       })
       .catch((e) => {
-
+        toast({
+          position: "top",
+          title: "Erro: ",
+          description: e.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+        setLoading(false)
       })
   }
 
@@ -150,7 +163,7 @@ function Cadastro() {
             width={500}
             onClick={Cadastrar}
           >
-            Cadastrar
+            {!loading ? 'Cadastrar' : <Spinner color='blue.500' />}
           </Button>
         </div>
         <Link href="/"><span className="underline"> Voltar ao login</span></Link>

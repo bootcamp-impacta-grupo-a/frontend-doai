@@ -6,7 +6,7 @@ import axios from "axios";
 import { Card } from "../components/Card";
 
 export const Instituicoes = () => {
-  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext();
+  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext<any>();
   const [nova, setNova] = useState("")
   const [municipios, setMunicipios] = useState([])
   const selectElement = useRef(null)
@@ -67,7 +67,7 @@ export const Instituicoes = () => {
           </Select>
         </div>
         <div className="w-full flex gap-4 flex-wrap overflow-y-auto mt-4">
-          {instituicoes.map((inst, index) => <Card descricaoInstituicao={inst.desc} image={inst.imagem} nomeInstituicao={inst.nome} key={index}/>) }
+          {instituicoes.map((inst, index) => <Card id={inst.id} descricaoInstituicao={inst.desc} image={inst.imagem} nomeInstituicao={inst.nome} key={index}/>) }
         </div>
       </div>
     </div>
@@ -106,98 +106,63 @@ const estados = [
 
 const instituicoes = [
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 2,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 3,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 4,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
   {
+    id: 1,
     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
     nome: 'AACD',
     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
   },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-  {
-    imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-    nome: 'AACD',
-    desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-  },
-]
+  ]

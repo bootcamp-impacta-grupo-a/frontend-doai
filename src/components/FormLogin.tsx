@@ -7,15 +7,14 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import icon from "../assets/icon_receipt.svg";
-import { Link } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useDispatch } from "react-redux";
 import { changeUser } from "../redux/userSlice";
 
-const baseURL = `https://localhost:44353/Doai/Usuario/Autenticacao`;
+const baseURL = `${process.env.BASE_URL}/Doai/Usuario/Autenticacao`;
 
 const FormLogin = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +25,9 @@ const FormLogin = () => {
   const toast = useToast();
   const dispatch = useDispatch();
 
-  const toastLoginInválido = () => {
+  
+  
+  const toastLoginInvalido = () => {
     toast({
       position: "top",
       title: "Erro: ",
@@ -42,14 +43,14 @@ const FormLogin = () => {
   //Chamada de Login
   async function fazerLogin() {
     //valida se os campos login e senha foram preenchidos
-    if (login == "" || senha == "") {
-      toastLoginInválido()
+    if (login === "" || senha === "") {
+      toastLoginInvalido()
       return
     }
     setLoading(true)
-
+    
     await axios
-      .post(`${baseURL}?Login=${login}&Senha=${senha}`)
+      .post(`${baseURL}`, {login : login, senha: senha})
       .then((response) => {
         setTimeout(() => {
           dispatch(changeUser({name: login, token: response.data.token, logged: true}))
@@ -65,20 +66,19 @@ const FormLogin = () => {
         }, 1000);
       })
       .catch((e) => {
-        toastLoginInválido()
+        toastLoginInvalido()
         setLoading(false)
       })
   }
-
-  //redireciona para home sem login
-  const toHome = () => {
-    navigate('/home/upload')
-  };
 
   //redireciona para tela de cadastro
   const toRegister = () => {
     navigate("/register");
   };
+
+  const enter = (e) => {
+    if (e.key == "Enter") fazerLogin()
+  }
 
 
   return (
@@ -100,6 +100,7 @@ const FormLogin = () => {
             type={show ? "text" : "password"}
             placeholder="Senha"
             onChange={(e) => setSenha(e.target.value)}
+            onKeyDown={(e) => enter(e)}
             value={senha}
           />
           <InputRightElement width="4.5rem">
@@ -130,7 +131,7 @@ const FormLogin = () => {
           Cadastrar
         </Button>
       </div>
-      <Link onClick={toHome} href="/home/upload">
+      <Link to={"/home/instituicoes"}>
         <span className="underline">
           Quero doar sem fazer login
         </span> 

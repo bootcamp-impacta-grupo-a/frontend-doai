@@ -61,7 +61,7 @@ export function DragNDrop(props) {
 
     var formData = new FormData();
     formData.append("formData", files[0]);
-    axios.post('https://localhost:44353/Doai/NotaFiscal/UploadNota', formData, {
+    axios.post(`${process.env.BASE_URL}/Doai/NotaFiscal/UploadNota`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Authorization': `Bearer ${user.token}` 

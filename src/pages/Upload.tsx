@@ -4,58 +4,26 @@ import { DragNDrop } from "../components/DragNDrop";
 import { FiAlertTriangle } from "react-icons/fi";
 import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import InputFile from "../components/InputFile";
-import axios from 'axios';
-import { useSelector } from "react-redux";
-import { selectUser } from "../redux/userSlice";
+
+import { useParams } from "react-router-dom";
+import { ModalInstituicao } from '../components/Modal'
 
 
 export default function Upload() {
   const [isfotosCarregadas, setIsFotosCarregadas] = useState(false)
-  const [loading, setLoading] = useState(false)
+
   const [file, setFile] = useState(null)
-  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext();
-  const user = useSelector(selectUser);
-  const toast = useToast();
-  const navigate = useNavigate();
+  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext<any>();
+  
+  let params = useParams();
+
+
 
   useEffect(() => {
     setPaginaSelecionada(1)
   }, [])
 
-  const enviarFoto = () => {
-    setLoading(true)
-    var formData = new FormData();
-    formData.append("formData", file);
-    axios.post('https://localhost:44353/Doai/NotaFiscal/UploadNota', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Authorization': `Bearer ${user.token}` 
-    }
-    }).then((response) => {
-      toast({
-        position: "top",
-        title: "Obrigado! ",
-        description: "Foto carregada com sucesso.",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      setLoading(false)
-      navigate('/home/instituicoes')
-      
-    })
-    .catch((e) => {
-      toast({
-        position: "top",
-        title: "Erro ao enviar a foto ",
-        description: "selecione outra imagem",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      setLoading(false)
-    })
-  }
+ 
 
   return (
     <>
@@ -72,18 +40,7 @@ export default function Upload() {
               Permitido apenas arquivos .JPG, .PNG, .PDF de até 10mb
             </p>
           </span>
-          <Button
-            backgroundColor={isfotosCarregadas ? "#FFC011" : "gray"}
-            _hover={{ backgroundColor: "#ffd311" }}
-            color="white"
-            variant="outline"
-            width={300}
-            marginLeft={5}
-            disabled={!isfotosCarregadas}
-            onClick={enviarFoto}
-          >
-            {!loading ? 'Selecionar Instituição' : <Spinner color='blue.500' />}
-          </Button>
+          <ModalInstituicao fotoCarregada={isfotosCarregadas} file={file} id={params.id}/>
         </div>
       </div>
     </>

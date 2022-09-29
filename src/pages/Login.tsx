@@ -14,7 +14,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user.isLogged) {
-      navigate('/home/upload')
+      navigate('/home/instituicoes')
     }
   },[user.isLogged])
 

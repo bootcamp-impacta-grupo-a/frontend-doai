@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { Tabela } from "../components/Tabela";
 
 export default function Historico() {
-  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext();
+  const [paginaSelecionada, setPaginaSelecionada] = useOutletContext<any>();
 
 
 
