@@ -82,9 +82,12 @@ const FormLogin = () => {
 
 
   return (
-    <div className="w-10/12  md:w-1/3 lg:w-1/4 h-3/5 p-4 flex flex-col bg-white rounded-md justify-around items-center">
-      <p className="flex  text-5xl text-corfonte font-texto font-bold">
-        <img src={icon} alt="Icone de recebimento " className="mr-1" /> doaí
+    <div className="form">
+      <p className="form-title text-5xl text-corfonte font-texto font-bold">
+        <div>
+          <img src={icon} alt="Icone de recebimento " className="mr-1" />
+        </div>
+        <h4>doaí</h4>
       </p>
       <p className="text-center  font-semibold text-lg ">Doe suas notas fiscais e ajude pessoas!</p>
       <div className="w-10/12 h-auto grid gap-4">
@@ -110,7 +113,7 @@ const FormLogin = () => {
           </InputRightElement>
         </InputGroup>
       </div>
-      <div className="w-10/12 flex justify-around">
+      <div className="my-5 w-10/12 flex justify-around">
         <Button
           bgColor={"#FFC011"}
           _hover={{ backgroundColor: "#ffd311" }}

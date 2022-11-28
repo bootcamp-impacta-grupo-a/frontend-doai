@@ -5,12 +5,40 @@ import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 import { Card } from "../components/Card";
 
+
 export const Instituicoes = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useOutletContext<any>();
   const [instituicoes, setInstituicoes] = useState([])
   const [nova, setNova] = useState("")
   const [municipios, setMunicipios] = useState([])
   const selectElement = useRef(null)
+
+  const list = [
+    {
+      id: 1,
+      imagem: 'https://pqdassets.nyc3.digitaloceanspaces.com/645/cover.png',
+      nome: 'Associação Vaga Lume',
+      descricao: 'Conheça a ONG que empodera crianças de comunidades rurais da Amazônia a partir da promoção da leitura e da gestão de bibliotecas comunitárias.'
+    },
+    {
+      id: 2,
+      imagem: 'https://pqdassets.nyc3.digitaloceanspaces.com/687/apae.jpeg',
+      nome: 'APAE Brasil',
+      descricao: 'Com a missão de educar, prestar atendimento em saúde e lutar pela inclusão social, a Apae dedica atenção integral à pessoa com deficiência'
+    },
+    {
+      id: 3,
+      imagem: 'https://pqdassets.nyc3.digitaloceanspaces.com/752/cover-%287%29.png',
+      nome: 'SAS Brasil',
+      descricao: 'Levar atendimento médico de qualidade forma itinerante aos diversos cantos do país. Essa é a missão da SAS Brasil!'
+    },
+    {
+      id: 4,
+      imagem: 'https://pqdassets.nyc3.digitaloceanspaces.com/287/Design-sem-nome.png',
+      nome: 'SOS Pantanal',
+      descricao: 'Um dos biomas mais importantes do mundo conta com a mobilização coletiva para resistir. O SOS Pantanal direciona esse apoio, fortaleça esse movimento e doe!'
+    },
+  ]
 
   useEffect(() => {
     setPaginaSelecionada(2);
@@ -33,12 +61,13 @@ export const Instituicoes = () => {
 
 
   return (
-    <div className="w-screen h-4/5 flex flex-col justify-start items-center mt-12">
-      <h3 className="text-4xl font-bold font-texto mb-12">
+    <div className="content">
+      <h3 className="title">
         Escolha uma instituição para doar!
       </h3>
+
       <div className="w-11/12 h-4/5 bg-white flex flex-col justify-start items-center p-4 ">
-        <div className="flex md:flex-row flex-col gap-4 w-5/6">
+        <div className="filters flex md:flex-row flex-col gap-4 w-5/6">
           <InputGroup size="md">
             <Input
               placeholder="Busque por nome CNPJ, Razão Social"
@@ -73,8 +102,9 @@ export const Instituicoes = () => {
             ))}
           </Select>
         </div>
-        <div className="w-full flex gap-4 flex-wrap overflow-y-auto mt-4">
-          {instituicoes.map((inst, index) => <Card id={inst.id} descricaoInstituicao={inst.descricao} image={inst.id} nomeInstituicao={inst.nome} key={index}/>) }
+
+        <div className="card-list">
+          {list.map((inst, index) => <Card id={inst.id} descricaoInstituicao={inst.descricao} image={inst.imagem} nomeInstituicao={inst.nome} key={index}/>) }
         </div>
       </div>
     </div>
@@ -111,11 +141,4 @@ const estados = [
   { uf: "TO", desc: "Tocantins" },
 ];
 
-// const instituicoes = [
-//   {
-//     id: 1,
-//     imagem: 'https://yt3.ggpht.com/ytc/AKedOLS7Z9WLrOVdLKa_zSu_z2bHJ6jxmJkQFsGiF-RMmQ=s900-c-k-c0x00ffffff-no-rj',
-//     nome: 'AACD',
-//     desc: 'Uma Instituição para deficientes que promove a locomoção e melhora dos pacientes'
-//   }
-//   ]
+
