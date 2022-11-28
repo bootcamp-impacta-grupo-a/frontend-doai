@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css'
 import Login from './pages/Login'
 import Home from './pages/Home'
@@ -8,7 +8,7 @@ import Upload from "./pages/Upload";
 import { Instituicoes } from "./pages/Instituicoes";
 import { Confirmacao } from "./pages/Confirmacao";
 import Historico from "./pages/Historico";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getFromLocalStorage } from "./helpers/local-storage";
 import { changeUser } from "./redux/userSlice";
 import { useDispatch } from "react-redux";
@@ -51,14 +51,5 @@ function App() {
     </BrowserRouter>
   )
 }
-
-const ProtectedRoute = ({ user, redirectPath = '/landing' }) => {
-  if (!user) {
-    return <Navigate to={redirectPath} replace />;
-  }
-
-  return <Outlet />;
-};
-
 
 export default App
