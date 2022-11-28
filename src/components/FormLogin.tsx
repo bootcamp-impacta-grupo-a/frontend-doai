@@ -24,8 +24,6 @@ const FormLogin = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const dispatch = useDispatch();
-
-  
   
   const toastLoginInvalido = () => {
     toast({
@@ -37,8 +35,6 @@ const FormLogin = () => {
       isClosable: true,
     });
   };
-
-  
 
   //Chamada de Login
   async function fazerLogin() {
