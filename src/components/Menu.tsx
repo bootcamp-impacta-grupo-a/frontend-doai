@@ -3,16 +3,28 @@ import { selectUser } from "../redux/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/userSlice";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, useToast } from "@chakra-ui/react";
+import { cleanLocalStorage } from "../helpers/local-storage";
 
 export function Menu(props) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const deslogar = () => {
     dispatch(logout());
     navigate("/");
+    cleanLocalStorage()
+
+    toast({
+      position: "top",
+      title: "Usuário deslogado",
+      description: "Você deslogou da plataforma",
+      status: "warning",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -20,7 +32,7 @@ export function Menu(props) {
       <ul id="menu" className="flex items-center w-full h-full text-lg font-medium text-white">
         <div className="nav-items">
           <li>
-            <Link to={"/home/upload"}>
+            <Link to={"/home/instituicoes"}>
               <p className="flex flex-row text-4xl   font-texto font-bold">
                 <svg
                   width="35"
@@ -38,11 +50,13 @@ export function Menu(props) {
               </p>
             </Link>
           </li>
+
           <li>
             <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-md': ''}`}> Instituições</span></Link>
           </li>
+
           <li>
-            <Link to={"/home/instituicoes"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-xl': ''}`}> Carregar Notas Fiscais</span></Link>
+            <Link to={"/home/instituicoes"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-md': ''}`}> Carregar Notas Fiscais</span></Link>
           </li>
         </div>
 

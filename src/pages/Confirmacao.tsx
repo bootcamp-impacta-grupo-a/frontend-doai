@@ -9,6 +9,7 @@ export const Confirmacao = () => {
   const user = useSelector(selectUser);
 
   const novaDoacao = () => navigate('/home/instituicoes')
+  const minhasDoacoes = () => navigate('/home/historico')
 
   return (
     <div className="w-screen h-screen bg-[#EBF2F5] flex flex-col justify-center items-center ">
@@ -17,7 +18,7 @@ export const Confirmacao = () => {
       <h3 className="font-semibold text-3xl">Obrigado pela sua doação!</h3>
       <div className="flex justify-around">
       {user.isLogged && (
-        <Button   colorScheme="cyan" variant="outline" mr={8} >
+        <Button  onClick={minhasDoacoes} colorScheme="cyan" variant="outline" mr={8} >
           Ver minhas doações 
         </Button>
       )}
