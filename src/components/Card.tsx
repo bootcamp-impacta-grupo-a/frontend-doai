@@ -32,13 +32,10 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
   }
  
   return(
-    <div className="card" >
-      <div className="h-40">
-        <img className="w-80 h-full shadow-md" src={image} alt={nomeInstituicao} />
-      </div>
-      
-      <h3 className="font-bold text-lg mt-5">{nomeInstituicao}</h3>
-      <p className="text-justify px-4 mb-5">{descricaoInstituicao}</p>
+    <div className="w-80 flex-grow bg-white flex flex-col justify-around items-center shadow-lg  max-w-md" >
+      <img className="w-full h-2/6 shadow-md" src={`${process.env.BASE_URL}/Doai/NotaFiscal/RetornaNota/${idFoto}`} alt={nomeInstituicao} />
+      <h3 className="font-bold text-lg">{nomeInstituicao}</h3>
+      <p className="text-justify px-4">{descricaoInstituicao}</p>
       <Button
           bgColor={"#FFC011"}
           _hover={{ backgroundColor: "#ffd311" }}
