@@ -32,8 +32,8 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
   }
  
   return(
-    <div className="w-80 flex-grow bg-white flex flex-col justify-around items-center shadow-lg  max-w-md" >
-      <img className="w-full h-2/6 shadow-md" src={`${process.env.BASE_URL}/Doai/NotaFiscal/RetornaNota/${idFoto}`} alt={nomeInstituicao} />
+    <div className="card w-80 flex-grow  flex flex-col justify-around items-center shadow-lg  max-w-md" >
+      <img className="card-image" src={`${process.env.BASE_URL}/Doai/NotaFiscal/RetornaNota/${idFoto}`} alt={nomeInstituicao} />
       <h3 className="font-bold text-lg">{nomeInstituicao}</h3>
       <p className="text-justify px-4">{descricaoInstituicao}</p>
       <Button
@@ -44,6 +44,7 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
           width={"80%"}
           marginLeft={5}
           onClick={telaUpload}
+          className="mt-5"
         >
           Selecionar
         </Button>

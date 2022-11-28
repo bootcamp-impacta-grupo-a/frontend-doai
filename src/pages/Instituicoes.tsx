@@ -30,25 +30,25 @@ export const Instituicoes = () => {
        setNova(uf)
     },2000)
   } 
-
-
   return (
-    <div className="w-screen h-4/5 flex flex-col justify-start items-center mt-12">
-      <h3 className="text-4xl font-bold font-texto mb-12">
-        Escolha uma instituição para doar!
+    <div className="inst-content">
+      <h3 className="title text-4xl font-bold font-texto mb-12">
+        Escolha uma instituição para doar
       </h3>
-      <div className="w-11/12 h-4/5 bg-white flex flex-col justify-start items-center p-4 ">
-        <div className="flex md:flex-row flex-col gap-4 w-5/6">
+      
+      <div className="titlew-11/12 h-4/5 bg-white flex flex-col justify-start items-center p-4 ">
+        <div className="filters">
           <InputGroup size="md">
             <Input
               placeholder="Busque por nome CNPJ, Razão Social"
-              size="md"
+              size="sm"
               bg="gray.100"
             />
             <InputRightElement width="4.5rem">
               <BsSearch color="#07B7DE" />
             </InputRightElement>
           </InputGroup>
+
           <Select
             placeholder="Estado"
             bg="gray.100"
