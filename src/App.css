@@ -11,7 +11,87 @@ html{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px
+  gap: 50px
+}
+
+/* Menu */
+#menu{
+  font-size: 16px !important;
+  width: 70%;
+  height: 60px;
+  justify-content: space-between;
+  position: relative;
+}
+
+#menu .user-info{
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+#menu .user-info .user {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+#menu .user-info .user .name{
+  text-transform: capitalize;
+}
+
+#menu .user-info .user a{
+  display: flex;
+  align-items: center;
+}
+
+#menu .user-info .user .hello{
+  margin-right: 5px;
+}
+
+#menu .user-info .user .arrow-down{
+margin-left: 10px;
+}
+
+#menu .user-info .avatar{
+  width: 20px;
+  height: 20px;
+}
+
+#menu .user-info:hover li ~ .dropdown,
+#menu .user-info .dropdown:hover{
+  display: flex;
+
+}
+
+#menu .user-info .dropdown{
+  width: 180px;
+
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+
+  background: #0bb7de;
+  padding: 10px 1rem;
+
+  position: absolute;
+  top: 50px;
+
+}
+
+#menu .user-info .dropdown li{
+  white-space: nowrap;
+}
+
+#menu .nav-items{
+  align-items: center;
+  display: flex;
+  gap: 40px;
+}
+
+#menu .nav-items li{
+  padding: 10px 0
 }
 
 /* Login Page*/
@@ -45,6 +125,7 @@ html{
   border-radius: 30px;
   padding: 20px
 }
+
 .form-title{
   display: flex;
   flex-direction: column;
@@ -53,28 +134,47 @@ html{
 }
 
 /* Instituicóes Page */
-.inst-content{
+#institutions{
   width: 80%;
-  height: 100vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
 
-.title{
+#institutions h3{
   font-size: 30px;
   font-weight: bold;
-  margin-top: 150px;
+  margin: 100px 0 20px;
 }
 
-.filters{
+#institutions section{
+  height: 500px;
+}
+
+#filters{
   margin-bottom: 20px;
   display: flex;
   width: 100%;
   gap: 20px;
 }
+
+#filters input,
+#filters select{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.css-4302v8 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
 
 .card-list{
   width: 100%;
@@ -85,6 +185,17 @@ html{
 .card{
   gap: 10px;
   min-height: 200px;
+  background-color: white;
+  padding: 2rem 1rem;
+  border-radius: 20px;
+}
+
+.card button{
+  background-color:#FFC011;
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  margin: 0 1rem;
 }
 
 .card-image{

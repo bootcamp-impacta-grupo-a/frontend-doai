@@ -31,20 +31,23 @@ export const Instituicoes = () => {
     },2000)
   } 
   return (
-    <div className="inst-content">
-      <h3 className="title text-4xl font-bold font-texto mb-12">
+    <div id="institutions">
+      <h3 className="text-4xl font-bold font-texto">
         Escolha uma instituição para doar
       </h3>
       
-      <div className="titlew-11/12 h-4/5 bg-white flex flex-col justify-start items-center p-4 ">
-        <div className="filters">
+      <section className="flex flex-col justify-start items-center p-4 ">
+        <div id="filters">
           <InputGroup size="md">
             <Input
               placeholder="Busque por nome CNPJ, Razão Social"
               size="sm"
               bg="gray.100"
             />
-            <InputRightElement width="4.5rem">
+
+            <InputRightElement
+              width="4.5rem"
+            >
               <BsSearch color="#07B7DE" />
             </InputRightElement>
           </InputGroup>
@@ -61,6 +64,7 @@ export const Instituicoes = () => {
               <option key={estado.uf} value={estado.uf}>{estado.desc}</option>
             ))}
           </Select>
+
           <Select
             placeholder="Cidade"
             bg="gray.100"
@@ -73,10 +77,11 @@ export const Instituicoes = () => {
             ))}
           </Select>
         </div>
+
         <div className="w-full flex gap-4 flex-wrap overflow-y-auto mt-4">
           {instituicoes.map((inst, index) => <Card id={inst.id} descricaoInstituicao={inst.descricao} image={inst.id} nomeInstituicao={inst.nome} key={index}/>) }
         </div>
-      </div>
+      </section>
     </div>
   );
 };

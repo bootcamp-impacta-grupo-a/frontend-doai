@@ -16,9 +16,9 @@ export function Menu(props) {
   };
 
   return (
-    <div className="bg-[#07B7DE] h-16 w-screen fixed top-0 flex justify-center">
-      <div className="lg:w-4/5 w-full h-full flex items-center">
-        <ul className="flex justify-around items-center w-full h-full text-lg font-medium text-white mt-2">
+    <div className="bg-[#07B7DE] w-screen fixed top-0 flex justify-center">
+      <ul id="menu" className="flex items-center w-full h-full text-lg font-medium text-white">
+        <div className="nav-items">
           <li>
             <Link to={"/home/upload"}>
               <p className="flex flex-row text-4xl   font-texto font-bold">
@@ -39,35 +39,49 @@ export function Menu(props) {
             </Link>
           </li>
           <li>
-            <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-xl': ''}`}> Instituições</span></Link>
+            <Link to={"/home/instituicoes"}><span  className={` ${props.menuAtual == 2 ? 'underline font-extrabold text-md': ''}`}> Instituições</span></Link>
           </li>
           <li>
             <Link to={"/home/instituicoes"}><span className={` mr-2 ${props.menuAtual == 1 ? 'underline font-extrabold text-xl': ''}`}> Carregar Notas Fiscais</span></Link>
           </li>
-          {user.isLogged && (
+        </div>
+
+        <div className="user-info">
+          {user?.isLogged && (
             <>
-              <li>
-                <Link to={"/home/historico"}><span className={` ${props.menuAtual == 3 ? 'underline font-extrabold text-xl': ''}`}>Minhas Doações</span> </Link>
-              </li>
-              <li>
-                <Link to={"/home/upload"}><span className={` ${props.menuAtual == 4 ? 'underline font-extrabold text-xl': ''}`}>Ajuda</span></Link>
-              </li>
-              <li>
+              <li className="user">
                 <Link to={"/home/perfil"}>
-                  olá, <span className={` ${props.menuAtual == 5 ? 'underline font-extrabold text-xl ': ''}mr-2`}>{user.name}</span>
-                  <Avatar name={user.name} size={"sm"} bg='yellow.400' src='https://bit.ly/broken-link' />
+                  <span className="hello">Olá, </span>
+                  <span className={`name ${props.menuAtual == 5 ? 'underline font-extrabold text-md ': ''}mr-2`}>
+                  {user.name}
+                  </span>
+
+                  <Avatar name={user.name} size={"sm"} bg='yellow.400' src='https://bit.ly/broken-link' className="avatar"/>
+
+                  <span className="arrow-down">∨</span>
                 </Link>
               </li>
+
+              <div className="dropdown">
+                <li>
+                  <Link to={"/home/historico"}>
+                    <span className={`${props.menuAtual == 3 ? 'underline font-extrabold text-md': ''}`}>
+                      ♥ Minhas Doações
+                    </span>
+                  </Link>
+                </li>
+
+                <li>
+                  <a className="exit cursor-pointer" onClick={deslogar}>
+                    ⇨ Sair
+                  </a>
+                </li>
+              </div>
             </>
           )}
+        </div>
 
-          <li>
-            <a className="cursor-pointer" onClick={deslogar}>
-              sair
-            </a>
-          </li>
-        </ul>
-      </div>
+      </ul>
     </div>
   );
 }
