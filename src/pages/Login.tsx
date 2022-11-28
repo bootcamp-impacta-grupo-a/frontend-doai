@@ -5,16 +5,18 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../redux/userSlice";
 import FormLogin from '../components/FormLogin'
 import bro from "../assets/bro.svg";
+import { setToLocalStorage } from "../helpers/local-storage";
 
 const Login = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.isLogged) {
+    if (user?.isLogged) {
+      setToLocalStorage('user', user)
       navigate('/home/instituicoes')
     }
-  },[user.isLogged])
+  },[user?.isLogged])
 
   return (
     <div className="login-content  bg-gradient-to-r from-cyan-500 to-blue-500">
