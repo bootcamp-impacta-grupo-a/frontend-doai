@@ -32,7 +32,7 @@ export function Menu(props) {
       <ul id="menu" className="flex items-center w-full h-full text-lg font-medium text-white">
         <div className="nav-items">
           <li>
-            <Link to={"/home/upload"}>
+            <Link to={"/home/instituicoes"}>
               <p className="flex flex-row text-4xl   font-texto font-bold">
                 <svg
                   width="35"
