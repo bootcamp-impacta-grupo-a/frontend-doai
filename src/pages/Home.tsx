@@ -6,7 +6,7 @@ const Home = () => {
   const [paginaSelecionada, setPaginaSelecionada] = useState(1)
 
   return (
-    <div className="bg-[#EBF2F5] h-screen flex flex-col justify-center items-center">
+    <div className="home bg-[#EBF2F5] h-screen flex flex-col justify-center items-center">
       <Menu menuAtual={paginaSelecionada}/>
       <Outlet context={[paginaSelecionada, setPaginaSelecionada]}/>
     </div> 

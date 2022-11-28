@@ -30,25 +30,28 @@ export const Instituicoes = () => {
        setNova(uf)
     },2000)
   } 
-
-
   return (
-    <div className="w-screen h-4/5 flex flex-col justify-start items-center mt-12">
-      <h3 className="text-4xl font-bold font-texto mb-12">
-        Escolha uma instituição para doar!
+    <div id="institutions">
+      <h3 className="text-4xl font-bold font-texto">
+        Escolha uma instituição para doar
       </h3>
-      <div className="w-11/12 h-4/5 bg-white flex flex-col justify-start items-center p-4 ">
-        <div className="flex md:flex-row flex-col gap-4 w-5/6">
+      
+      <section className="flex flex-col justify-start items-center p-4 ">
+        <div id="filters">
           <InputGroup size="md">
             <Input
               placeholder="Busque por nome CNPJ, Razão Social"
-              size="md"
+              size="sm"
               bg="gray.100"
             />
-            <InputRightElement width="4.5rem">
+
+            <InputRightElement
+              width="4.5rem"
+            >
               <BsSearch color="#07B7DE" />
             </InputRightElement>
           </InputGroup>
+
           <Select
             placeholder="Estado"
             bg="gray.100"
@@ -61,6 +64,7 @@ export const Instituicoes = () => {
               <option key={estado.uf} value={estado.uf}>{estado.desc}</option>
             ))}
           </Select>
+
           <Select
             placeholder="Cidade"
             bg="gray.100"
@@ -73,10 +77,11 @@ export const Instituicoes = () => {
             ))}
           </Select>
         </div>
+
         <div className="w-full flex gap-4 flex-wrap overflow-y-auto mt-4">
           {instituicoes.map((inst, index) => <Card id={inst.id} descricaoInstituicao={inst.descricao} image={inst.id} nomeInstituicao={inst.nome} key={index}/>) }
         </div>
-      </div>
+      </section>
     </div>
   );
 };

@@ -6,8 +6,6 @@ import { selectUser } from "../redux/userSlice";
 import FormLogin from '../components/FormLogin'
 import bro from "../assets/bro.svg";
 
-
-
 const Login = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
@@ -19,13 +17,21 @@ const Login = () => {
   },[user.isLogged])
 
   return (
-    <div className="h-screen flex bg-gradient-to-r from-cyan-500 to-blue-500 justify-around items-center ">
-      <FormLogin />
+    <div className="login-content  bg-gradient-to-r from-cyan-500 to-blue-500">
+      <div className="wrapper">
+      <div className="login-form">
+        <FormLogin />
+      </div>
+      <div className="login-image">
       <img
         src={bro}
         alt="Grupo de amigos de mãos dadas"
-        className="h-1/2 hidden md:block"
+        className="login-image item"
       />
+      </div>
+      </div>
+
+
     </div>
   );
 };

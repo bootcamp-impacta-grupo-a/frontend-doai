@@ -32,10 +32,10 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
   }
  
   return(
-    <div className="w-80 flex-grow bg-white flex flex-col justify-around items-center shadow-lg  max-w-md" >
-      <img className="w-full h-2/6 shadow-md" src={`${process.env.BASE_URL}/Doai/NotaFiscal/RetornaNota/${idFoto}`} alt={nomeInstituicao} />
-      <h3 className="font-bold text-lg">{nomeInstituicao}</h3>
-      <p className="text-justify px-4">{descricaoInstituicao}</p>
+    <div className="card w-80 flex-grow  flex flex-col justify-around items-center  max-w-md" >
+      <img className="card-image" src={`${process.env.BASE_URL}/Doai/NotaFiscal/RetornaNota/${idFoto}`} alt={nomeInstituicao} />
+      <h4 className="font-bold text-lg">{nomeInstituicao}</h4>
+      <p className="px-4">{descricaoInstituicao}</p>
       <Button
           bgColor={"#FFC011"}
           _hover={{ backgroundColor: "#ffd311" }}
@@ -45,7 +45,7 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
           marginLeft={5}
           onClick={telaUpload}
         >
-          Selecionar
+          Fazer doação
         </Button>
     </div>
   )
