@@ -15,23 +15,19 @@ import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(null);
 
 
   useEffect(() => {
     const userFromLocal = getFromLocalStorage('user');
 
     if (userFromLocal){
-      setUser(userFromLocal)
-      dispatch(
-        changeUser(
-        {
-          name: userFromLocal.name,
-          token: userFromLocal.token,
-          logged: true
-        }
-        )
-      )
+      const user = {
+        name: userFromLocal.name,
+        token: userFromLocal.token,
+        logged: true
+      }
+      
+      dispatch(changeUser(user))
     }
   }, []);
 
