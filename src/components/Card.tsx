@@ -2,6 +2,8 @@ import { Button } from "@chakra-ui/button"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { changeInstituicao } from "../redux/instituicao";
 
 
 interface IPropsCard {
@@ -15,6 +17,7 @@ interface IPropsCard {
 export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsCard) => {
   const navigate = useNavigate();
   const [idFoto, setIdFoto] = useState(0);
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -24,6 +27,7 @@ export const Card = ({id, image,  nomeInstituicao, descricaoInstituicao}:IPropsC
   }, []);
 
   const telaUpload = () =>{
+    dispatch(changeInstituicao({name: nomeInstituicao }))
     navigate(`/home/upload/${id}`);
   }
  

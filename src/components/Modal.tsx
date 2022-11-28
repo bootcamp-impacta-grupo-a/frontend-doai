@@ -17,6 +17,7 @@ import axios from 'axios';
 import { useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom";
 import { selectUser } from "../redux/userSlice";
+import { selectInstituicao } from "../redux/instituicao";
 
 interface IProps {
   fotoCarregada: boolean
@@ -30,6 +31,7 @@ export function ModalInstituicao({fotoCarregada, file, id}: IProps) {
   );
   const [loading, setLoading] = useState(false)
   const user = useSelector(selectUser);
+  const instituicao = useSelector(selectInstituicao);
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
@@ -97,7 +99,7 @@ export function ModalInstituicao({fotoCarregada, file, id}: IProps) {
           <ModalHeader>Deseja confirmar a doação para a instituição abaixo? </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>AACD</Text>
+            <Text>{instituicao.name}</Text>
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose} bg="#FFC011" color="white" m={4}>
