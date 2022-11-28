@@ -27,6 +27,10 @@ export function Menu(props) {
     });
   };
 
+  const logar = () => {
+    navigate("/");
+  };
+
   return (
     <div className="bg-[#07B7DE] w-screen fixed top-0 flex justify-center">
       <ul id="menu" className="flex items-center w-full h-full text-lg font-medium text-white">
@@ -61,7 +65,7 @@ export function Menu(props) {
         </div>
 
         <div className="user-info">
-          {user?.isLogged && (
+          {user?.isLogged ? (
             <>
               <li className="user">
                 <Link to={"/home/perfil"}>
@@ -92,7 +96,10 @@ export function Menu(props) {
                 </li>
               </div>
             </>
-          )}
+            ) : (
+              <a className="exit cursor-pointer" onClick={logar}>Fazer login</a>
+            ) 
+          }
         </div>
 
       </ul>

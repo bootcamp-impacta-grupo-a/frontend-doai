@@ -16,25 +16,39 @@ import { useDispatch } from "react-redux";
 function App() {
   const dispatch = useDispatch();
 
+
   useEffect(() => {
-    const user = getFromLocalStorage('user');
-    if(user) dispatch(changeUser({name: user.name, token: user.token, logged: true}))
+    const userFromLocal = getFromLocalStorage('user');
+
+    if (userFromLocal){
+      const user = {
+        name: userFromLocal.name,
+        token: userFromLocal.token,
+        logged: true
+      }
+      
+      dispatch(changeUser(user))
+    }
   }, []);
 
   return (
-     <BrowserRouter>
-       <Routes>
-         <Route path="/" element={<Login />} />
-         <Route path="/register" element={<Cadastro />} />
-         <Route path="/confirmacao" element={<Confirmacao />} />
-         <Route path="/home"  element={<Home/>}>
-           <Route path="perfil"  element={<Perfil/>}/>
-           <Route path="upload/:id"  element={<Upload/>}/>
-           <Route path="instituicoes"  element={<Instituicoes/>}/>
-           <Route path="historico"  element={<Historico/>}/>
-         </Route>
-       </Routes>
-     </BrowserRouter>
+    <BrowserRouter>
+    
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Cadastro />} />
+          <Route path="/confirmacao" element={<Confirmacao />} />
+        
+          <Route path="home" element={<Home />} >
+            <Route path="perfil"  element={<Perfil/>}/>
+            <Route path="upload/:id"  element={<Upload/>}/>
+            <Route path="instituicoes"  element={<Instituicoes/>}/>
+            <Route path="historico"  element={<Historico/>}/>
+          </Route>
+
+        </Routes>
+  
+    </BrowserRouter>
   )
 }
 
